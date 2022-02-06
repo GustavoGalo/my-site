@@ -1,18 +1,36 @@
 version: "3"
 
+networks:
+  app_net:
+
 services:
-  webserver:
+  mysite:
+    image: my-site:latest
+    container_name: mysite
+    restart: always
+    networks:
+      app_net:
+    ports: [3000:3000]
+    volumes: ["/home/gustavo/Projects/my-site/:/home/app"]
+
+  nginx:
     image: nginx:latest
     ports:
       - 80:80
       - 443:443
     restart: always
+    networks:
+      app_net:
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - ./production/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./production/certbot/www:/var/www/certbot/:ro
+      - ./production/certbot/conf/:/etc/nginx/ssl/:ro
+
   certbot:
     image: certbot/certbot:latest
+    container_name: certbot
+    networks:
+      app_net:
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./production/certbot/www/:/var/www/certbot/:rw
+      - ./production/certbot/conf/:/etc/letsencrypt/:rw
