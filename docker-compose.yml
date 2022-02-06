@@ -4,9 +4,9 @@ networks:
   app_net:
 
 services:
-  mysite:
+  my-site:
     image: my-site:latest
-    container_name: mysite
+    container_name: my-site
     restart: always
     networks:
       app_net:
