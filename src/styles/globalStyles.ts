@@ -7,4 +7,10 @@ export const GlobalStyles = createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
   }
+
+  html {
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
+  }
 `;

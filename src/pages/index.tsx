@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
-import { Container, Loader } from "../styles";
+import { Container, Label } from "../styles";
 
 const Home: NextPage = () => {
   return (
     <Container>
-      <Loader />
-      <div>In progress...</div>
+      <Label>A GALODEV PRODUCTION</Label>
+
+      <Label>IN COMMING...</Label>
     </Container>
   );
 };
